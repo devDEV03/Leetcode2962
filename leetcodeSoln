@@ -1,0 +1,49 @@
+class Solution {
+    public long countSubarrays(int[] nums, int k) {
+        HashMap<Integer,Integer> hm = new HashMap();
+        int left = 0;
+        int right = left;
+        long ans = 0;
+        int max_num = Arrays.stream(nums).max().getAsInt();
+        int x =0;
+        while(right<nums.length){
+            // if(!hm.containsKey(nums[right])){
+            //     hm.put(nums[right],1);
+            // }
+            // else{
+            //     hm.put(nums[right],hm.get(nums[right])+1);
+            // }
+            //     if(nums[right] == max_num){
+            //         x++;
+            //     }
+            // if(x>=k){
+            //     ans++;
+            //     right++;
+            // }
+            // else{
+            //     right++;
+            // }
+
+            // if(right == nums.length){
+            //     left++;
+            //     right = left;
+            //     // 
+            //     x =0;
+            // }
+            if(nums[right] == max_num){
+                x++;
+            }
+
+            while(x>=k){
+                ans += (nums.length-right);
+
+                if(nums[left] == max_num){
+                    x--;
+                }
+                left++;
+            }
+            right++;
+        }
+        return ans;
+    }
+}
